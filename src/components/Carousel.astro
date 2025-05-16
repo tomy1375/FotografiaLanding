@@ -1,0 +1,267 @@
+---
+// Carousel.astro - Componente de carrusel para fotografías de bodas
+---
+
+<section id="carousel" class="py-24 bg-white">
+  <div class="container mx-auto px-6 max-w-screen-2xl">
+    <h2 class="text-3xl font-serif text-center mb-12">Momentos Especiales</h2>
+    
+    <div class="carousel-container relative mx-auto">
+      <!-- Contenedor del carrusel -->
+      <div class="carousel-track overflow-hidden">
+        <div class="carousel-slides flex transition-transform duration-500 ease-in-out">
+          <!-- Slide 1 -->
+          <div class="carousel-slide min-w-full px-4">
+            <!-- En móviles: mostrar solo 1 imagen por slide -->
+            <div class="block md:hidden">
+              <div class="h-[400px] overflow-hidden mb-4">
+                <img src="/fotog1.jpg" alt="Novia y novio con ramo de flores" class="w-full h-full object-cover">
+              </div>
+            </div>
+            
+            <!-- En tablets y desktop: mostrar grid de imágenes -->
+            <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="h-[500px] lg:h-[600px] overflow-hidden">
+                <img src="/fotog1.jpg" alt="Novia y novio con ramo de flores" class="w-full h-full object-cover">
+              </div>
+              <div class="h-[500px] lg:h-[600px] overflow-hidden">
+                <img src="/fotog7.jpg" alt="Pareja en jardín formal" class="w-full h-full object-cover">
+              </div>
+              <div class="h-[500px] lg:h-[600px] overflow-hidden hidden lg:block">
+                <img src="/fotog8.jpg" alt="Pareja mirando el paisaje" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 2 -->
+          <div class="carousel-slide min-w-full px-4">
+            <!-- En móviles: mostrar solo 1 imagen por slide -->
+            <div class="block md:hidden">
+              <div class="h-[400px] overflow-hidden mb-4">
+                <img src="/fotog3.jpg" alt="Ceremonia de boda" class="w-full h-full object-cover">
+              </div>
+            </div>
+            
+            <!-- En tablets y desktop: mostrar grid de imágenes -->
+            <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="h-[500px] lg:h-[600px] overflow-hidden">
+                <img src="/fotog3.jpg" alt="Ceremonia de boda" class="w-full h-full object-cover">
+              </div>
+              <div class="h-[500px] lg:h-[600px] overflow-hidden">
+                <img src="/fotog6.jpg" alt="Primer baile" class="w-full h-full object-cover">
+              </div>
+              <div class="h-[500px] lg:h-[600px] overflow-hidden hidden lg:block">
+                <img src="/fotog9.jpg" alt="Detalles de boda" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 3 -->
+          <div class="carousel-slide min-w-full px-4">
+            <!-- En móviles: mostrar solo 1 imagen por slide -->
+            <div class="block md:hidden">
+              <div class="h-[400px] overflow-hidden mb-4">
+                <img src="/fotog10.jpg" alt="Retrato de pareja" class="w-full h-full object-cover">
+              </div>
+            </div>
+            
+            <!-- En tablets y desktop: mostrar grid de imágenes -->
+            <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="h-[500px] lg:h-[600px] overflow-hidden">
+                <img src="/fotog10.jpg" alt="Retrato de pareja" class="w-full h-full object-cover">
+              </div>
+              <div class="h-[500px] lg:h-[600px] overflow-hidden">
+                <img src="/fotog11.jpg" alt="Sesión de fotos" class="w-full h-full object-cover">
+              </div>
+              <div class="h-[500px] lg:h-[600px] overflow-hidden hidden lg:block">
+                <img src="/fotog12.jpg" alt="Momento romántico" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Controles de navegación -->
+      <button class="carousel-prev absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-white bg-opacity-80 p-2 md:p-3 rounded-full shadow-md z-10 hover:bg-opacity-100 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      
+      <button class="carousel-next absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-white bg-opacity-80 p-2 md:p-3 rounded-full shadow-md z-10 hover:bg-opacity-100 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+      
+      <!-- Indicador de página -->
+      <div class="flex justify-center items-center mt-8 md:mt-12 space-x-4 md:space-x-6">
+        <button class="carousel-arrow-left text-gray-400 hover:text-gray-800 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        
+        <div class="text-xs md:text-sm tracking-widest">
+          <span class="carousel-current">01</span> / <span class="carousel-total">03</span>
+        </div>
+        
+        <button class="carousel-arrow-right text-gray-400 hover:text-gray-800 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Seleccionar elementos
+    const track = document.querySelector('.carousel-slides');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+    const arrowLeft = document.querySelector('.carousel-arrow-left');
+    const arrowRight = document.querySelector('.carousel-arrow-right');
+    const currentIndicator = document.querySelector('.carousel-current');
+    const totalIndicator = document.querySelector('.carousel-total');
+    const carouselContainer = document.querySelector('.carousel-container');
+    
+    // Verificar que todos los elementos existen
+    if (!track || !slides.length || !prevButton || !nextButton || !arrowLeft || !arrowRight || !currentIndicator || !totalIndicator || !carouselContainer) {
+      console.error('Elementos del carrusel no encontrados');
+      return;
+    }
+    
+    let currentIndex = 0;
+    const slideCount = slides.length;
+    let autoplayInterval: number | undefined;
+    
+    // Formatear el número con ceros a la izquierda
+    function formatNumber(num: number): string {
+      return num.toString().padStart(2, '0');
+    }
+    
+    // Actualizar el indicador total
+    totalIndicator.textContent = formatNumber(slideCount);
+    
+    // Ir a una diapositiva específica
+    function goToSlide(index: number): void {
+      if (index < 0) index = slideCount - 1;
+      if (index >= slideCount) index = 0;
+      
+      currentIndex = index;
+      updateCarousel();
+    }
+    
+    // Ir a la diapositiva anterior
+    function goToPrevSlide(): void {
+      goToSlide(currentIndex - 1);
+    }
+    
+    // Ir a la diapositiva siguiente
+    function goToNextSlide(): void {
+      goToSlide(currentIndex + 1);
+    }
+    
+    // Actualizar la posición del carrusel
+    function updateCarousel(): void {
+      // Actualizar la posición del track - con verificación de tipo
+      if (track instanceof HTMLElement) {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+      
+      // Actualizar el indicador de página - con verificación de tipo
+      if (currentIndicator instanceof HTMLElement) {
+        currentIndicator.textContent = formatNumber(currentIndex + 1);
+      }
+    }
+    
+    // Iniciar autoplay
+    function startAutoplay(): void {
+      stopAutoplay(); // Evitar múltiples intervalos
+      autoplayInterval = window.setInterval(goToNextSlide, 5000); // Cambiar cada 5 segundos
+    }
+    
+    // Detener autoplay
+    function stopAutoplay(): void {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+      }
+    }
+    
+    // Añadir event listeners
+    prevButton.addEventListener('click', goToPrevSlide);
+    nextButton.addEventListener('click', goToNextSlide);
+    arrowLeft.addEventListener('click', goToPrevSlide);
+    arrowRight.addEventListener('click', goToNextSlide);
+    
+    // Pausar autoplay al pasar el mouse por encima
+    carouselContainer.addEventListener('mouseenter', stopAutoplay);
+    carouselContainer.addEventListener('mouseleave', startAutoplay);
+    
+    // Soporte para gestos táctiles
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    // Usar tipos específicos para eventos táctiles
+    function handleTouchStart(e: Event): void {
+      const touchEvent = e as TouchEvent;
+      if (touchEvent.touches && touchEvent.touches.length > 0) {
+        touchStartX = touchEvent.touches[0].screenX;
+      }
+    }
+    
+    function handleTouchEnd(e: Event): void {
+      const touchEvent = e as TouchEvent;
+      if (touchEvent.changedTouches && touchEvent.changedTouches.length > 0) {
+        touchEndX = touchEvent.changedTouches[0].screenX;
+        handleSwipe();
+      }
+    }
+    
+    function handleSwipe(): void {
+      const swipeThreshold = 50; // Umbral mínimo para considerar un deslizamiento
+      
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Deslizamiento hacia la izquierda -> siguiente diapositiva
+        goToNextSlide();
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        // Deslizamiento hacia la derecha -> diapositiva anterior
+        goToPrevSlide();
+      }
+    }
+    
+    // Añadir event listeners para eventos táctiles
+    carouselContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    carouselContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    // Iniciar autoplay
+    startAutoplay();
+    
+    // Actualizar carrusel en cambio de tamaño de ventana
+    window.addEventListener('resize', () => {
+      updateCarousel();
+    });
+  });
+</script>
+
+<style>
+  /* Estilos adicionales para el carrusel */
+  .carousel-slides {
+    will-change: transform;
+  }
+  
+  .carousel-slide {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Mejora la calidad de las imágenes */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: hidden;
+  }
+</style>

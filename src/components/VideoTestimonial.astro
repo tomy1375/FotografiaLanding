@@ -1,0 +1,59 @@
+---
+---
+
+<section class="relative w-full overflow-hidden" style="height: 40vh;">
+  <!-- Imagen de fondo con efecto de movimiento -->
+  <div class="absolute inset-0 w-full h-full bg-black">
+    <div class="image-pan-effect">
+      <img 
+        src="/foto1.jpg" 
+        alt="Wedding ceremony" 
+        class="w-full h-full object-cover grayscale brightness-75"
+      />
+    </div>
+    <!-- Overlay para mejorar la legibilidad del texto -->
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  </div>
+  
+  <!-- Contenido del testimonio -->
+  <div class="relative z-10 h-full flex flex-col items-center justify-center text-white px-6">
+    <blockquote class="max-w-3xl text-center">
+      <p class="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed">
+        "We love their creative and <span class="text-yellow-200">laid back</span> style. Best duo in the industry."
+      </p>
+      <footer class="mt-6 text-sm tracking-widest uppercase">
+        — Kenzie & JP
+      </footer>
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .image-pan-effect {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .image-pan-effect img {
+    width: 110%;
+    height: 110%;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    animation: panEffect 30s ease-in-out infinite alternate;
+  }
+  
+  @keyframes panEffect {
+    0% {
+      transform: scale(1.05) translate(0, 0);
+    }
+    50% {
+      transform: scale(1.1) translate(-1%, -1%);
+    }
+    100% {
+      transform: scale(1.05) translate(-2%, 0);
+    }
+  }
+</style>

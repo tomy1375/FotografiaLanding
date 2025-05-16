@@ -1,0 +1,214 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+  <div class="px-6 py-4 flex justify-between items-center">
+    <!-- Espacio vacío a la izquierda para mantener la simetría -->
+    <div class="w-6"></div>
+    
+    <!-- Logo/Título central - visible solo al hacer scroll -->
+    <a 
+      href="#top" 
+      class="text-white text-xl tracking-widest font-light opacity-0 transition-opacity duration-300" 
+      id="navbar-title"
+    >
+      CASSANDRA LADRU
+    </a>
+    
+    <!-- Botón de menú a la derecha -->
+    <button 
+      id="menu-toggle" 
+      class="text-white z-50 transition-opacity duration-300" 
+      aria-label="Menú"
+      aria-expanded="false"
+      aria-controls="navigation"
+    >
+      <Icon name="lucide:menu" class="w-6 h-6" />
+    </button>
+  </div>
+
+  <!-- Navegación desplegable con nuevo diseño -->
+  <nav 
+    id="navigation" 
+    class="fixed inset-0 bg-black bg-opacity-95 z-40 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col"
+    aria-hidden="true"
+  >
+    <div class="container mx-auto px-6 py-8 h-full flex flex-col">
+      <!-- Logo en la parte superior -->
+      <div class="text-center mb-16 mt-8">
+        <h1 class="text-4xl md:text-5xl tracking-widest font-light text-white mb-1">CASSANDRA LADRU</h1>
+        <p class="text-sm tracking-widest uppercase text-white">PHOTOGRAPHY</p>
+      </div>
+      
+      <!-- Contenido principal del menú - Reorganizado para móvil -->
+      <div class="flex flex-col md:flex-row flex-grow">
+        <!-- MÓVIL: Enlaces de navegación primero -->
+        <div class="md:w-1/2 md:pl-8 md:order-2 md:border-l border-gray-700 flex flex-col justify-center items-center md:items-start mb-12 md:mb-0">
+          <ul class="space-y-6 text-center md:text-left w-full md:pl-16">
+            <li>
+              <a href="#top" class="text-white text-2xl font-light hover:text-gray-300 transition-colors">Home</a>
+            </li>
+            <li>
+              <a href="#about" class="text-white text-2xl font-light hover:text-gray-300 transition-colors">About</a>
+            </li>
+            <li>
+              <a href="#portfolio" class="text-white text-2xl font-light hover:text-gray-300 transition-colors">Portfolio</a>
+            </li>
+            <li>
+              <a href="#contact" class="text-white text-2xl font-light hover:text-gray-300 transition-colors">Contact</a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- MÓVIL: Información del fotógrafo después (sin redes sociales en móvil) -->
+        <div class="md:w-1/2 md:pr-8 md:order-1 flex flex-col">
+          <h2 class="text-xl tracking-wide font-light text-white mb-6">Cassandra Ladru</h2>
+          <div class="w-16 h-0.5 bg-white mb-8"></div>
+          <p class="text-white text-lg font-light leading-relaxed italic">
+            Cassandra Ladru is a journalistic style wedding and lifestyle photographer, with a background in fashion photography and an eye for beautiful details.
+          </p>
+          
+          <!-- Redes sociales - ocultas en móvil -->
+          <div class="hidden md:block mt-auto pt-10">
+            <h3 class="text-white tracking-widest text-sm mb-4">FOLLOW ME</h3>
+            <div class="flex space-x-4">
+              <a href="#" aria-label="Facebook" class="text-white hover:text-gray-300 transition-colors">
+                <Icon name="lucide:facebook" class="w-5 h-5" />
+              </a>
+              <a href="#" aria-label="Instagram" class="text-white hover:text-gray-300 transition-colors">
+                <Icon name="lucide:instagram" class="w-5 h-5" />
+              </a>
+              <a href="#" aria-label="Pinterest" class="text-white hover:text-gray-300 transition-colors">
+                <Icon name="lucide:image" class="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botón de cierre -->
+    <button 
+      id="close-menu" 
+      class="absolute top-6 right-6 text-white z-50" 
+      aria-label="Cerrar menú"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Referencias a elementos
+    const navbar = document.getElementById('navbar');
+    const navbarTitle = document.getElementById('navbar-title');
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const navigation = document.getElementById('navigation');
+    
+    // Función para cambiar el navbar al hacer scroll
+    function updateNavbar() {
+      if (navbar && navbarTitle) {
+        if (window.scrollY > 100) {
+          navbar.classList.add('bg-black', 'bg-opacity-80');
+          navbarTitle.classList.remove('opacity-0');
+          navbarTitle.classList.add('opacity-100');
+        } else {
+          navbar.classList.remove('bg-black', 'bg-opacity-80');
+          navbarTitle.classList.remove('opacity-100');
+          navbarTitle.classList.add('opacity-0');
+        }
+      }
+    }
+    
+    // Inicializar el estado del navbar
+    updateNavbar();
+    
+    // Escuchar el evento de scroll
+    window.addEventListener('scroll', updateNavbar);
+    
+    // Funcionalidad para abrir el menú
+    if (menuToggle && navigation) {
+      menuToggle.addEventListener('click', () => {
+        navigation.classList.remove('translate-x-full');
+        navigation.classList.add('translate-x-0');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        navigation.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('overflow-hidden');
+        
+        // Ocultar el botón de menú cuando se abre el menú
+        menuToggle.classList.add('opacity-0');
+        menuToggle.classList.add('pointer-events-none');
+      });
+    }
+    
+    // Funcionalidad para cerrar el menú
+    if (closeMenu && navigation && menuToggle) {
+      closeMenu.addEventListener('click', () => {
+        navigation.classList.remove('translate-x-0');
+        navigation.classList.add('translate-x-full');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        navigation.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('overflow-hidden');
+        
+        // Mostrar el botón de menú cuando se cierra el menú
+        setTimeout(() => {
+          menuToggle.classList.remove('opacity-0');
+          menuToggle.classList.remove('pointer-events-none');
+        }, 300); // Esperar a que termine la transición del menú
+      });
+    }
+    
+    // Cerrar el menú cuando se hace clic en un enlace
+    if (navigation && menuToggle) {
+      const navLinks = navigation.querySelectorAll('a');
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', () => {
+          navigation.classList.remove('translate-x-0');
+          navigation.classList.add('translate-x-full');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          navigation.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('overflow-hidden');
+          
+          // Mostrar el botón de menú cuando se cierra el menú
+          setTimeout(() => {
+            menuToggle.classList.remove('opacity-0');
+            menuToggle.classList.remove('pointer-events-none');
+          }, 300);
+        });
+      });
+    }
+    
+    // Implementar desplazamiento suave para todos los enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Usar el elemento del evento en lugar de 'this' para evitar errores de TypeScript
+        const element = e.currentTarget as HTMLAnchorElement;
+        const targetId = element.getAttribute('href');
+        
+        if (targetId === '#top') {
+          // Si el enlace es al inicio, desplazarse al principio de la página
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else if (targetId) {
+          // Para otros enlaces, desplazarse al elemento correspondiente
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
