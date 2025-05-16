@@ -26,7 +26,10 @@ const { title, description = "Sitio web de fotografía profesional" } = Astro.pr
 </html>
 
 <style is:global>
-  @import 'tailwindcss';
+  /* Directivas correctas para Tailwind v3 */
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 
   html {
     font-family: 'Montserrat', sans-serif;

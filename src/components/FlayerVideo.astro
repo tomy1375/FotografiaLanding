@@ -1,19 +1,30 @@
 ---
+// No se necesitan importaciones adicionales
 ---
 
-<section id="testimonial" class="py-16 relative">
-  <!-- Contenedor de fondo con imagen -->
+<section id="testimonial" class="py-16 relative h-[400px] overflow-hidden">
+  <!-- Contenedor de fondo con video en loop -->
   <div class="absolute inset-0 overflow-hidden">
-    <img 
-      src="/foto1.jpg" 
-      alt="Wedding ceremony" 
-      style="width: 100%; height: 100%; object-fit: cover; display: block;"
-    />
+    <video 
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      class="w-full h-full object-cover"
+    >
+      <source src="/boda.mp4" type="video/mp4" />
+      <!-- Imagen de respaldo en caso de que el video no se cargue -->
+      <img 
+        src="/foto1.jpg" 
+        alt="Wedding ceremony" 
+        class="w-full h-full object-cover"
+      />
+    </video>
     <div class="absolute inset-0 bg-black opacity-60"></div>
   </div>
   
   <!-- Contenido del testimonio -->
-  <div class="container mx-auto px-4 py-12 relative z-10 max-w-screen-2xl">
+  <div class="container mx-auto px-4 py-12 relative z-10 h-full flex items-center justify-center">
     <div class="max-w-3xl mx-auto text-center text-white">
       <blockquote>
         <p class="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed mb-6">

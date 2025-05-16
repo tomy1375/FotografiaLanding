@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  // En Tailwind v4, no es necesario especificar 'content'
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}", "*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -9,4 +9,5 @@ export default {
       },
     },
   },
+  // En Tailwind v4, no es necesario especificar plugins
 }

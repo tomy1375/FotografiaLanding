@@ -1,11 +1,13 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 import icon from "astro-icon";
 
 export default defineConfig({
-   devToolbar: {
-    enabled: false, // Desactiva la toolbar correctamente
+  devToolbar: {
+    enabled: false,
   },
   integrations: [
+    tailwind(), // Integración de Tailwind v3
     icon({
       include: {
         lucide: [
@@ -18,7 +20,7 @@ export default defineConfig({
           "instagram", 
           "facebook", 
           "image",
-          "x" // Añadido el icono "x"
+          "x"
         ]
       }
     })
