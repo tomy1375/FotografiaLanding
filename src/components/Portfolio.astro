@@ -5,11 +5,11 @@ const portfolioItems = [
     location: "Byron Bay",
     date: "11.11.18",
     photoCount: 68,
-    mainImage: "/fotog4.jpg",
+    mainImage: "/fotog4.webp",
     images: [
-      "/fotog1.jpg",
-      "/fotog3.jpg",
-      "/fotog5.jpg"
+      "/fotog1.webp",
+      "/fotog3.webp",
+      "/fotog5.webp"
     ]
   },
   {
@@ -17,11 +17,11 @@ const portfolioItems = [
     location: "Sydney",
     date: "05.04.22",
     photoCount: 72,
-    mainImage: "/fotog6.jpg",
+    mainImage: "/fotog6.webp",
     images: [
-      "/fotog8.jpg",
-      "/fotog7.jpg",
-      "/fotog9.jpg"
+      "/fotog8.webp",
+      "/fotog7.webp",
+      "/fotog9.webp"
     ]
   }
 ];
@@ -29,12 +29,12 @@ const portfolioItems = [
 
 <section id="portfolio" class="py-24 bg-gray-50">
   <div class="container mx-auto px-6 max-w-screen-2xl">
-    <h2 class="text-3xl md:text-4xl font-light mb-16 text-center">Portfolio</h2>
+    <h2 class="text-3xl md:text-4xl font-light mb-16 text-center">Portafolio</h2>
     
     {portfolioItems.map((item, index) => (
       <div class="mb-32 last:mb-0">
         <div class="uppercase text-xs tracking-widest text-center mb-6">
-          <span>Portfolio Highlight</span>
+          <span>Portafolio Highlight</span>
         </div>
         
         <h3 class="text-2xl md:text-3xl font-light text-center mb-16">{item.title}</h3>
@@ -59,14 +59,14 @@ const portfolioItems = [
           <div class="col-span-12 md:col-span-4 lg:col-span-3 flex flex-col justify-between">
             <div class="text-center mb-8">
               <span class="text-6xl font-light block mb-2">{item.photoCount}</span>
-              <span class="uppercase text-xs tracking-widest">Photos</span>
+              <span class="uppercase text-xs tracking-widest">Fotos</span>
             </div>
             
             <a 
               href="#" 
               class="border border-gray-300 text-center py-4 uppercase text-xs tracking-widest hover:bg-gray-100 transition-colors"
             >
-              View Gallery
+              Ver Galería
             </a>
           </div>
           
