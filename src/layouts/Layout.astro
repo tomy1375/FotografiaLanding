@@ -1,7 +1,9 @@
 ---
+import AnimationLoader from '../components/AnimationLoader.astro';
+
 export interface Props {
-  title: string;
-  description?: string;
+title: string;
+description?: string;
 }
 
 const { title, description = "Sitio web de fotografía profesional" } = Astro.props;
@@ -9,37 +11,39 @@ const { title, description = "Sitio web de fotografía profesional" } = Astro.pr
 
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
-  </head>
-  <body class="bg-white text-gray-900 font-sans">
-    <slot />
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/placeholder-logo.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-white text-gray-900 font-sans">
+  <slot />
+  
+  <!-- Cargar el componente de animaciones -->
+  <AnimationLoader/>
+</body>
 </html>
 
 <style is:global>
-  /* Directivas correctas para Tailwind v3 */
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  html {
-    font-family: 'Montserrat', sans-serif;
-  }
+html {
+  font-family: 'Montserrat', sans-serif;
+}
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+}
 
-  .hero-overlay {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
-  }
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+}
 </style>

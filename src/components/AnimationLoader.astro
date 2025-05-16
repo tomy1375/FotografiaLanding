@@ -1,0 +1,406 @@
+---
+---
+<script is:inline>
+  // Verificar si GSAP ya está cargado
+  if (typeof gsap === 'undefined') {
+    // Cargar GSAP desde CDN si no está disponible
+    const loadScript = (src) => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    };
+
+    // Cargar GSAP y plugins
+    Promise.all([
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'),
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js')
+    ]).then(() => {
+      console.log('GSAP cargado desde CDN');
+      // Iniciar animaciones después de cargar GSAP
+      setTimeout(initAnimations, 100);
+    }).catch(err => {
+      console.error('Error al cargar GSAP:', err);
+    });
+  } else {
+    // Si GSAP ya está disponible, iniciar animaciones
+    setTimeout(initAnimations, 100);
+  }
+
+  function initAnimations() {
+    console.log('Inicializando animaciones GSAP para fotografía');
+    
+    // Registrar plugins
+    if (typeof gsap !== 'undefined' && gsap.registerPlugin && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      console.log('ScrollTrigger registrado correctamente');
+    } else {
+      console.warn('No se pudo registrar ScrollTrigger, puede que no esté disponible');
+      return; // Salir si no podemos registrar ScrollTrigger
+    }
+    
+    // Animación inicial del hero
+    const heroTl = gsap.timeline({
+      delay: 0.3
+    });
+    
+    // Animación del título principal
+    heroTl.from('section:first-of-type h1', {
+      opacity: 0,
+      y: 30,
+      duration: 1.2,
+      ease: 'power3.out'
+    });
+    
+    // Animación del subtítulo
+    heroTl.from('section:first-of-type p', {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, '-=0.8');
+    
+    // Animación de la información inferior
+    heroTl.from('section:first-of-type .absolute.bottom-0 > div', {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, '-=0.5');
+    
+    // Animación del botón SKIP con rebote
+    heroTl.from('section:first-of-type a[href="#about"]', {
+      opacity: 0,
+      y: -20,
+      duration: 0.8,
+      ease: 'back.out(1.7)'
+    }, '-=0.5');
+    
+    // Animación del navbar
+    const navbarTl = gsap.timeline();
+    
+    // Logo aparece primero
+    navbarTl.from('nav a:first-child', {
+      opacity: 0,
+      y: -20,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+    
+    // Botón de menú aparece
+    navbarTl.from('nav button#menu-toggle', {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.6,
+      ease: 'back.out(1.7)'
+    }, '-=0.4');
+    
+    // Animaciones al hacer scroll
+    
+    // Animación para la sección About
+    gsap.from('#about img', {
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      x: -50,
+      duration: 1,
+      ease: 'power2.out'
+    });
+    
+    gsap.from('#about .space-y-6 > p', {
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      stagger: 0.2,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+    
+    gsap.from('#about .pt-4 img', {
+      scrollTrigger: {
+        trigger: '#about .pt-4',
+        start: 'top 90%',
+        once: true
+      },
+      opacity: 0,
+      scale: 0.8,
+      duration: 1,
+      ease: 'elastic.out(1, 0.5)'
+    });
+    
+    // Animación para la sección de Testimonios
+    gsap.from('#testimonial blockquote', {
+      scrollTrigger: {
+        trigger: '#testimonial',
+        start: 'top 70%',
+        once: true
+      },
+      opacity: 0,
+      scale: 0.9,
+      duration: 1,
+      ease: 'power3.out'
+    });
+    
+    // Animación para la sección de Portfolio
+    const portfolioItems = document.querySelectorAll('#portfolio > div > div');
+    portfolioItems.forEach((item, index) => {
+      // Título del portfolio
+      gsap.from(item.querySelector('h3'), {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 80%',
+          once: true
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: 0.1,
+        ease: 'power2.out'
+      });
+      
+      // Imágenes del portfolio con efecto escalonado
+      const images = item.querySelectorAll('img');
+      gsap.from(images, {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 70%',
+          once: true
+        },
+        opacity: 0,
+        y: 50,
+        stagger: 0.15,
+        duration: 1,
+        ease: 'power2.out'
+      });
+      
+      // Contador de fotos
+      gsap.from(item.querySelector('.text-6xl'), {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 70%',
+          once: true
+        },
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.8,
+        ease: 'back.out(1.7)'
+      });
+      
+      // Botón "View Gallery"
+      gsap.from(item.querySelector('a.border'), {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 60%',
+          once: true
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: 'power3.out'
+      });
+    });
+    
+    // Animación para el carrusel
+    // Animación para el título del carrusel
+    gsap.from('#carousel h2', {
+      scrollTrigger: {
+        trigger: '#carousel',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+
+    // Animación para las diapositivas del carrusel
+    gsap.from('#carousel .carousel-slides', {
+      scrollTrigger: {
+        trigger: '#carousel',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      duration: 1,
+      ease: 'power2.out'
+    });
+
+    // Animación para los indicadores de página del carrusel
+    gsap.from('#carousel .flex.justify-center', {
+      scrollTrigger: {
+        trigger: '#carousel',
+        start: 'top 70%',
+        once: true
+      },
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      delay: 0.3,
+      ease: 'power2.out'
+    });
+
+    // NO animar los botones de navegación laterales para evitar problemas
+    // En su lugar, asegurarse de que estén siempre visibles
+    gsap.set('#carousel .carousel-prev, #carousel .carousel-next', {
+      opacity: 1,
+      clearProps: 'all' // Esto elimina cualquier propiedad GSAP que pudiera afectarlos
+    });
+    
+    // Animación para la sección de contacto
+    gsap.from('#contact h2', {
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+    
+    gsap.from('#contact p', {
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power2.out'
+    });
+    
+    gsap.from('#contact form > div', {
+      scrollTrigger: {
+        trigger: '#contact form',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: 'power2.out'
+    });
+    
+    gsap.from('#contact button[type="submit"]', {
+      scrollTrigger: {
+        trigger: '#contact button[type="submit"]',
+        start: 'top 95%',
+        once: true
+      },
+      opacity: 0,
+      y: 20,
+      scale: 0.9,
+      duration: 0.8,
+      ease: 'back.out(1.7)'
+    });
+    
+    // Animación para el footer
+    gsap.from('footer p', {
+      scrollTrigger: {
+        trigger: 'footer',
+        start: 'top 95%',
+        once: true
+      },
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+    
+    // Animación para el menú móvil cuando se abre
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('navigation');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        // Verificar si el menú está abierto (basado en la clase translate-x-0)
+        const isOpen = mobileMenu.classList.contains('translate-x-0');
+        
+        if (isOpen) {
+          // Animar los elementos del menú
+          gsap.from('#navigation h1', {
+            opacity: 0,
+            y: -30,
+            duration: 0.6,
+            ease: 'power2.out'
+          });
+          
+          gsap.from('#navigation p.text-sm', {
+            opacity: 0,
+            y: -20,
+            duration: 0.6,
+            delay: 0.1,
+            ease: 'power2.out'
+          });
+          
+          gsap.from('#navigation ul li', {
+            opacity: 0,
+            x: -20,
+            stagger: 0.1,
+            duration: 0.5,
+            ease: 'power2.out'
+          });
+          
+          gsap.from('#navigation h2, #navigation .w-16', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            delay: 0.2,
+            ease: 'power2.out'
+          });
+          
+          // Animación específica para el párrafo descriptivo
+          gsap.from('#navigation .text-white.text-lg.font-light.leading-relaxed.italic', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            delay: 0.3,
+            ease: 'power2.out',
+            onStart: function() {
+              // Asegurarse de que el párrafo sea visible
+              const descParagraph = document.querySelector('#navigation .text-white.text-lg.font-light.leading-relaxed.italic');
+              if (descParagraph) {
+                descParagraph.style.opacity = '0';
+                descParagraph.style.display = 'block';
+              }
+            },
+            onComplete: function() {
+              // Garantizar que el párrafo permanezca visible después de la animación
+              const descParagraph = document.querySelector('#navigation .text-white.text-lg.font-light.leading-relaxed.italic');
+              if (descParagraph) {
+                descParagraph.style.opacity = '1';
+              }
+            }
+          });
+          
+          // Animación para la sección de redes sociales
+          gsap.from('#navigation .hidden.md\\:block', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            delay: 0.4,
+            ease: 'power2.out'
+          });
+        }
+      });
+    }
+    
+    console.log('Animaciones GSAP para fotografía inicializadas');
+  }
+</script>
